@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CASIO ClassWiz fx-991EX</title>
+<style>
+  :root{
+    --body-dark:#14171E; --body-surface:#1E232D; --body-elevated:#262E3B;
+    --body-border:#2E3746; --body-carbon:#181B22; --metallic-bezel:#3F495A; --lcd-bezel:#283141;
+    --solar-bg:#261214; --solar-hi:#4A2024; --solar-border:#5E2B30;
+    --lcd-bg:#D4DEC9; --lcd-text:#141E16; --lcd-text-sec:#3B4F40; --lcd-status:#1E3324; --lcd-cursor:#111C13;
+    --shift-gold:#FFB800; --shift-gold-bright:#FFC72C; --alpha-magenta:#FF2E63; --alpha-red:#F43F5E; --alpha-cyan:#06B6D4;
+    --key-func-dark:#283142; --key-func-dark2:#19202C; --key-func-border:#3B4860;
+    --key-num-white:#FFFFFF; --key-num-white2:#E2E8F0; --key-num-border:#CBD5E1; --key-num-text:#0F172A;
+    --key-del-navy:#1E3A8A; --key-del-border:#3B82F6; --key-ac-blue:#2563EB; --key-ac-border:#60A5FA;
+    --action-blue:#2563EB;
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; user-select:none; }
+  html,body{ height:100%; }
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 50% -10%, #232a38 0%, #0b0d12 70%);
+    font-family:-apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    padding:18px 10px;
+  }
+  .device{
+    width:100%; max-width:430px;
+    background:linear-gradient(180deg, var(--body-surface), var(--body-dark) 55%, var(--body-carbon));
+    border-radius:26px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.7), 0 0 0 1px #05060a, inset 0 1px 0 rgba(255,255,255,.04);
+    padding:14px 14px 20px;
+    border:1px solid #0a0c11;
+  }
+
+  /* ---------- header ---------- */
+  .header{ padding:2px 4px 10px; }
+  .header-top{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; flex-direction:column; gap:1px; }
+  .brand-row{ display:flex; align-items:center; gap:8px; }
+  .brand-casio{ color:#fff; font-size:17px; font-weight:900; letter-spacing:2px; }
+  .brand-classwiz{ color:var(--alpha-magenta); font-size:11px; font-weight:800; letter-spacing:1px; }
+  .brand-model{ color:#cbd5e1; font-size:11px; font-weight:700; letter-spacing:1px; }
+  .solar{
+    display:flex; align-items:center; gap:3px; padding:5px 8px; border-radius:6px;
+    background:linear-gradient(180deg, var(--solar-bg), var(--solar-hi), var(--solar-bg));
+    border:1px solid var(--solar-border);
+  }
+  .solar-cell{ width:8px; height:12px; background:rgba(0,0,0,.25); border:0.5px solid rgba(255,138,128,.4); }
+  .solar-label{ color:rgba(255,213,79,.85); font-size:6.5px; font-weight:700; margin-inline-start:3px; letter-spacing:.3px; }
+
+  .toolbar{ display:flex; align-items:center; justify-content:space-between; margin-top:8px; gap:8px; }
+  .mode-badge{
+    display:flex; align-items:center; gap:5px; height:26px; padding:0 10px; border-radius:7px;
+    background:var(--action-blue); color:#fff; font-size:10px; font-weight:800; letter-spacing:.3px;
+    border:none; cursor:pointer; white-space:nowrap;
+  }
+  .toolbar-right{ display:flex; align-items:center; gap:6px; }
+  .pill-btn{
+    height:24px; padding:0 8px; border-radius:6px; background:var(--body-elevated);
+    border:1px solid var(--body-border); color:var(--alpha-magenta); font-size:9.5px; font-weight:800;
+    cursor:pointer;
+  }
+  .pill-btn.gold{ color:var(--shift-gold); }
+
+  /* ---------- screen ---------- */
+  .screen-wrap{
+    margin:10px 2px 12px; padding:6px; border-radius:14px;
+    background:var(--lcd-bezel); border:2px solid var(--body-border);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.5);
+  }
+  .lcd{
+    border-radius:10px; padding:12px 14px 14px;
+    background:linear-gradient(165deg, #dbe4d0 0%, #cdd8c2 55%, #b9c6ac 100%);
+    border:1px solid #1e2e2a;
+    min-height:172px;
+    display:flex; flex-direction:column;
+  }
+  .lcd-status{ display:flex; align-items:center; justify-content:space-between; }
+  .lcd-status-group{ display:flex; align-items:center; gap:7px; }
+  .lcd-badge{ color:var(--lcd-status); font-size:10.5px; font-weight:800; letter-spacing:.3px; font-family:'Courier New',monospace; }
+  .lcd-badge.blue{ color:#1d4b6b; }
+  .lcd-badge.clickable{ cursor:pointer; padding:1px 4px; border-radius:4px; }
+  .lcd-badge.clickable:active{ background:rgba(0,0,0,.08); }
+  .lcd-badge.shift{ color:#8a6300; }
+  .lcd-badge.alpha{ color:#a3123f; }
+
+  .lcd-expr{
+    flex:1; margin-top:10px; overflow-x:auto; overflow-y:hidden;
+    display:flex; align-items:center; min-height:56px;
+    scrollbar-width:none;
+  }
+  .lcd-expr::-webkit-scrollbar{ display:none; }
+  .lcd-expr-inner{
+    color:var(--lcd-text); font-family:'Courier New', monospace; font-weight:700;
+    font-size:26px; line-height:1.15; white-space:nowrap; letter-spacing:.5px;
+  }
+  .lcd-expr-inner .txt{ white-space:pre; }
+
+  .frac{ display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; line-height:1; }
+  .fnum,.fden{ font-size:16px; padding:1px 3px; min-width:10px; text-align:center; }
+  .fbar{ width:100%; height:2px; background:var(--lcd-text); margin:2px 0; }
+  .exp{ font-size:15px; vertical-align:super; position:relative; top:-6px; }
+  .sqrt{ display:inline-flex; align-items:flex-end; vertical-align:middle; }
+  .radical{ font-size:22px; margin-inline-end:1px; }
+  .sqrt-content{ border-top:2px solid var(--lcd-text); padding:0 3px 0 1px; }
+
+  .field-active{ background:rgba(20,30,22,.12); border-radius:3px; }
+  .cursor{ display:inline-block; width:2px; height:22px; background:var(--lcd-cursor); vertical-align:middle; margin:0 1px; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .lcd-divider{ height:1px; background:rgba(30,45,35,.35); margin:6px 0; }
+
+  .lcd-result-row{ display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:38px; }
+  .format-pill{
+    display:flex; align-items:center; gap:4px; padding:3px 7px; border-radius:6px; cursor:pointer;
+    background:rgba(30,45,35,.12); border:1px solid rgba(30,45,35,.25);
+  }
+  .format-pill svg{ width:11px; height:11px; }
+  .format-pill span{ color:#7a5c00; font-size:8.5px; font-weight:800; }
+  .lcd-result{
+    flex:1; text-align:end; color:#0c1c14; font-family:'Courier New', monospace; font-weight:800;
+    font-size:26px; overflow-x:auto; white-space:nowrap; direction:ltr;
+  }
+  .lcd-result.error{ color:#8c1123; font-size:17px; }
+  .lcd-result .frac .fnum,.lcd-result .frac .fden{ font-size:18px; }
+  .toast{
+    position:absolute; left:50%; transform:translateX(-50%); bottom:8px;
+    background:rgba(20,20,26,.94); color:#fff; font-size:11px; font-weight:700;
+    padding:7px 12px; border-radius:8px; white-space:nowrap; opacity:0; pointer-events:none;
+    transition:opacity .15s ease; z-index:20; border:1px solid rgba(255,255,255,.12);
+  }
+  .toast.show{ opacity:1; }
+  .device{ position:relative; }
+
+  /* ---------- keypad ---------- */
+  .keypad{ padding:2px 2px 0; }
+  .krow{ display:flex; gap:6px; margin-bottom:6px; }
+  .kcol{ display:flex; flex-direction:1; flex-direction:column; gap:6px; flex:1.15; }
+
+  .top-cluster{ display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:6px; }
+  .top-side{ display:flex; flex-direction:column; gap:6px; flex:1.15; }
+  .top-side .krow{ margin-bottom:0; }
+
+  button{ font-family:inherit; }
+
+  .k{
+    border:none; border-radius:9px; cursor:pointer; position:relative; width:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .k:active{ transform:translateY(1px) scale(.98); filter:brightness(.92); }
+
+  .k-annot{
+    position:absolute; top:1px; left:5px; right:5px; display:flex; justify-content:space-between;
+    font-size:8px; font-weight:800; pointer-events:none;
+  }
+  .k-annot .sh{ color:var(--shift-gold); }
+  .k-annot .al{ color:var(--alpha-magenta); }
+
+  .k-pill{ height:30px; border-radius:9px; font-size:9.5px; font-weight:900; letter-spacing:.4px; color:#fff; background:var(--key-func-dark); border:1px solid var(--key-func-border); }
+  .k-pill.active-shift{ background:linear-gradient(180deg,#7a5900,#3d2c00); box-shadow:0 0 0 2px var(--shift-gold) inset; color:var(--shift-gold-bright); }
+  .k-pill.active-alpha{ background:linear-gradient(180deg,#7a0030,#3d0018); box-shadow:0 0 0 2px var(--alpha-magenta) inset; color:#ff7fa3; }
+
+  .k-func{ height:36px; padding-top:12px; background:linear-gradient(180deg,var(--key-func-dark),var(--key-func-dark2)); border:1px solid var(--key-func-border); color:#fff; font-size:12px; font-weight:700; }
+  .k-func .lbl{ margin-top:1px; }
+  .k-silver{ height:30px; border-radius:9px; background:linear-gradient(180deg,#d7dee6,#a7b1bd); border:1px solid #8a94a3; color:#12161d; font-size:9.5px; font-weight:900; }
+
+  .k-num{ height:42px; padding-top:12px; background:linear-gradient(180deg,var(--key-num-white),var(--key-num-white2)); border:1px solid var(--key-num-border); color:var(--key-num-text); font-size:18px; font-weight:800; box-shadow:0 2px 0 rgba(148,163,184,.5); }
+  .k-num .lbl{ font-size:18px; }
+  .k-num.small .lbl{ font-size:13px; }
+  .k-action{ height:42px; padding-top:12px; color:#fff; font-size:13px; font-weight:900; letter-spacing:.4px; }
+  .k-del{ background:linear-gradient(180deg,var(--key-del-navy),#122868); border:1px solid var(--key-del-border); }
+  .k-ac{ background:linear-gradient(180deg,var(--key-ac-blue),#1b3fae); border:1px solid var(--key-ac-border); }
+
+  .dpad{ position:relative; width:78px; height:78px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #4a5468, #232a36 70%); border:1px solid #10141c; flex:none; }
+  .dpad-btn{ position:absolute; width:26px; height:26px; background:none; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#f1f5f9; }
+  .dpad-btn.up{ top:2px; left:50%; transform:translateX(-50%); }
+  .dpad-btn.down{ bottom:2px; left:50%; transform:translateX(-50%); }
+  .dpad-btn.left{ left:2px; top:50%; transform:translateY(-50%); }
+  .dpad-btn.right{ right:2px; top:50%; transform:translateY(-50%); }
+  .dpad-center{ position:absolute; top:50%; left:50%; width:20px; height:20px; border-radius:50%; transform:translate(-50%,-50%); background:radial-gradient(circle at 35% 30%,#b8c2cf,#5b6675); border:1px solid #cbd5e1; }
+
+  .row6{ grid-template-columns: repeat(6,1fr); }
+  .grid6{ display:grid; grid-template-columns:repeat(6,1fr); gap:5px; margin-bottom:6px; }
+  .grid5{ display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:6px; }
+
+  @media (max-width:360px){
+    .lcd-expr-inner{ font-size:22px; }
+    .k-num{ height:38px; }
+  }
+
+  /* ---------- mode bars ---------- */
+  .basen-bar{ display:none; gap:6px; margin:0 2px 10px; }
+  .basen-bar.show{ display:flex; }
+  .basen-btn{ flex:1; padding:7px 0; border-radius:7px; background:var(--body-elevated); border:1px solid var(--body-border); color:#93c5fd; font-size:10.5px; font-weight:800; cursor:pointer; }
+  .basen-btn.active{ background:var(--action-blue); color:#fff; border-color:#60a5fa; }
+
+  .stat-bar{ display:none; align-items:center; justify-content:space-between; margin:0 2px 10px; padding:8px 10px; border-radius:9px; background:var(--body-elevated); border:1px solid var(--body-border); }
+  .stat-bar.show{ display:flex; }
+  .stat-bar span{ color:#93c5fd; font-size:11.5px; font-weight:800; }
+  .stat-bar button{ background:var(--action-blue); border:none; color:#fff; font-size:10px; font-weight:800; padding:6px 10px; border-radius:6px; cursor:pointer; }
+
+  /* ---------- modal ---------- */
+  .modal-overlay{ position:fixed; inset:0; background:rgba(5,6,10,.6); backdrop-filter:blur(2px); display:none; align-items:center; justify-content:center; z-index:60; padding:22px; }
+  .modal-overlay.show{ display:flex; }
+  .modal-box{ background:linear-gradient(180deg,#242b3a,#161a22); border:1px solid #313a4a; border-radius:16px; width:100%; max-width:360px; max-height:78vh; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 25px 60px rgba(0,0,0,.55); }
+  .modal-header{ display:flex; align-items:center; justify-content:space-between; padding:13px 14px; border-bottom:1px solid #313a4a; }
+  .modal-header span{ color:#fff; font-weight:800; font-size:13px; letter-spacing:.2px; }
+  .modal-header button{ background:none; border:none; color:#94a3b8; font-size:17px; cursor:pointer; line-height:1; padding:2px 6px; }
+  .modal-body{ padding:8px; overflow-y:auto; }
+  .modal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .modal-app{ display:flex; flex-direction:column; align-items:center; gap:6px; padding:12px 4px; border-radius:11px; background:#1c2230; border:1px solid #2c3446; cursor:pointer; }
+  .modal-app:active{ filter:brightness(1.15); }
+  .modal-app .ic{ font-size:20px; }
+  .modal-app .lb{ color:#e2e8f0; font-size:9.5px; font-weight:800; text-align:center; }
+  .modal-app.soon{ opacity:.45; }
+  .modal-list-item{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 12px; border-radius:9px; cursor:pointer; }
+  .modal-list-item:active{ background:#1c2230; }
+  .modal-list-item .name{ color:#e2e8f0; font-size:12px; font-weight:700; }
+  .modal-list-item .val{ color:#93c5fd; font-size:10.5px; font-family:'Courier New',monospace; white-space:nowrap; }
+  .modal-toggle-row{ display:flex; align-items:center; justify-content:space-between; padding:12px; }
+  .modal-toggle-row .name{ color:#e2e8f0; font-size:12.5px; font-weight:700; }
+  .toggle-switch{ width:44px; height:25px; border-radius:13px; background:#374151; position:relative; cursor:pointer; transition:background .15s; flex:none; }
+  .toggle-switch.on{ background:var(--action-blue); }
+  .toggle-switch .knob{ position:absolute; top:2.5px; left:2.5px; width:20px; height:20px; border-radius:50%; background:#fff; transition:left .15s; }
+  .toggle-switch.on .knob{ left:21.5px; }
+  .modal-note{ color:#94a3b8; font-size:10.5px; padding:6px 12px 10px; line-height:1.5; }
+
+  .tool-field{ display:flex; flex-direction:column; gap:4px; padding:6px 12px; flex:1; }
+  .tool-field label{ color:#94a3b8; font-size:10px; font-weight:700; }
+  .tool-field input, .mat-cell{ background:#12161f; border:1px solid #313a4a; border-radius:7px; color:#e2e8f0; padding:8px 9px; font-size:13px; font-family:'Courier New',monospace; width:100%; direction:ltr; }
+  .tool-row{ display:flex; gap:6px; padding:0 6px; }
+  .tool-compute{ display:block; margin:10px 12px 4px; background:var(--action-blue); border:none; color:#fff; font-weight:800; font-size:12px; padding:9px; border-radius:9px; cursor:pointer; width:calc(100% - 24px); }
+  .tool-row .tool-compute{ width:auto; margin:4px 2px; flex:1; padding:8px 4px; font-size:10.5px; }
+  .tool-result{ margin:6px 12px 10px; padding:10px 12px; background:#12161f; border-radius:9px; color:#e2e8f0; font-size:14px; min-height:20px; line-height:1.6; }
+</style>
+</head>
+<body>
+  <div class="device" id="device">
+
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-row">
+            <span class="brand-casio">CASIO</span>
+            <span class="brand-classwiz">CLASSWIZ</span>
+          </div>
+          <span class="brand-model">fx-991EX</span>
+        </div>
+        <div class="solar">
+          <div class="solar-cell"></div><div class="solar-cell"></div>
+          <div class="solar-cell"></div><div class="solar-cell"></div>
+          <span class="solar-label">TWO WAY POWER</span>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="mode-badge" id="modeBadge" onclick="handleMenu()">▦ MENU: COMP</button>
+        <div class="toolbar-right">
+          <button class="pill-btn" onclick="openVarsModal()">VARS</button>
+          <button class="pill-btn gold" onclick="handleOptn()">CATALOG</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-wrap">
+      <div class="lcd">
+        <div class="lcd-status">
+          <div class="lcd-status-group">
+            <span class="lcd-badge shift" id="badgeShift" style="display:none;">S</span>
+            <span class="lcd-badge alpha" id="badgeAlpha" style="display:none;">A</span>
+            <span class="lcd-badge">COMP</span>
+          </div>
+          <div class="lcd-status-group">
+            <span class="lcd-badge blue clickable" id="badgeAngle" onclick="toggleAngle()">D</span>
+            <span class="lcd-badge blue clickable" id="badgeFormat" onclick="toggleFormat()">Frac</span>
+          </div>
+        </div>
+
+        <div class="lcd-expr" id="exprScroll">
+          <div class="lcd-expr-inner" id="exprInner"></div>
+        </div>
+
+        <div class="lcd-divider"></div>
+
+        <div class="lcd-result-row">
+          <div class="format-pill" onclick="toggleFormat()" id="formatPill" style="visibility:hidden;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8a6300" stroke-width="2.5"><path d="M7 7h10M7 12l10 0M7 17h10"/></svg>
+            <span id="formatPillText">S⇔D</span>
+          </div>
+          <div class="lcd-result" id="resultEl"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toastEl"></div>
+
+    <div class="basen-bar" id="basenBar">
+      <button class="basen-btn" id="baseBtn2" onclick="setBaseRadix(2)">BIN</button>
+      <button class="basen-btn" id="baseBtn8" onclick="setBaseRadix(8)">OCT</button>
+      <button class="basen-btn active" id="baseBtn10" onclick="setBaseRadix(10)">DEC</button>
+      <button class="basen-btn" id="baseBtn16" onclick="setBaseRadix(16)">HEX</button>
+    </div>
+
+    <div class="stat-bar" id="statBar">
+      <span id="statCount">n = 0</span>
+      <div style="display:flex; gap:6px;">
+        <button onclick="showStatSummary()">الملخص</button>
+        <button onclick="clearStatData()" style="background:#475569;">مسح</button>
+      </div>
+    </div>
+
+    <div class="keypad">
+
+      <!-- top cluster -->
+      <div class="top-cluster">
+        <div class="top-side">
+          <div class="krow">
+            <button class="k k-pill" id="btnShift" onclick="toggleShift()">SHIFT</button>
+            <button class="k k-pill" id="btnAlpha" onclick="toggleAlpha()">ALPHA</button>
+          </div>
+          <div class="krow">
+            <button class="k k-func" onclick="handleOptn()"><span class="k-annot"><span class="sh">QR</span><span class="al"></span></span><span class="lbl">OPTN</span></button>
+            <button class="k k-func" onclick="handleCalc()"><span class="k-annot"><span class="sh">SOLVE</span><span class="al">=</span></span><span class="lbl">CALC</span></button>
+          </div>
+        </div>
+
+        <div class="dpad">
+          <button class="dpad-btn up" onclick="toast('لا يوجد سجل تمرير في هذا العرض')">▲</button>
+          <button class="dpad-btn down" onclick="exitField()">▼</button>
+          <button class="dpad-btn left" onclick="dpadLeft()">◀</button>
+          <button class="dpad-btn right" onclick="exitField()">▶</button>
+          <div class="dpad-center"></div>
+        </div>
+
+        <div class="top-side">
+          <div class="krow">
+            <button class="k k-silver" onclick="handleMenu()">MENU</button>
+            <button class="k k-silver" onclick="clearAll()">ON</button>
+          </div>
+          <div class="krow">
+            <button class="k k-func" onclick="handleIntegral()"><span class="k-annot"><span class="sh">d/dx</span><span class="al">:</span></span><span class="lbl">∫dx</span></button>
+            <button class="k k-func" onclick="handleXVar()"><span class="k-annot"><span class="sh"></span><span class="al">x</span></span><span class="lbl">x</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- scientific function rows -->
+      <div class="grid6">
+        <button class="k k-func" onclick="handleFracKey()"><span class="k-annot"><span class="sh">■■/□</span><span class="al"></span></span><span class="lbl">■/□</span></button>
+        <button class="k k-func" onclick="handleSqrtKey()"><span class="k-annot"><span class="sh">³√</span><span class="al"></span></span><span class="lbl">√■</span></button>
+        <button class="k k-func" onclick="handleSquareKey()"><span class="k-annot"><span class="sh">x³</span><span class="al"></span></span><span class="lbl">x²</span></button>
+        <button class="k k-func" onclick="handlePowKey()"><span class="k-annot"><span class="sh">ⁿ√■</span><span class="al"></span></span><span class="lbl">x^■</span></button>
+        <button class="k k-func" onclick="handleLogKey()"><span class="k-annot"><span class="sh">∑</span><span class="al"></span></span><span class="lbl">log</span></button>
+        <button class="k k-func" onclick="handleLnKey()"><span class="k-annot"><span class="sh">e^■</span><span class="al">e</span></span><span class="lbl">ln</span></button>
+      </div>
+
+      <div class="grid6">
+        <button class="k k-func" onclick="handleNegKey()"><span class="k-annot"><span class="sh">Fact</span><span class="al">A</span></span><span class="lbl">(-)</span></button>
+        <button class="k k-func" onclick="handleDegKey()"><span class="k-annot"><span class="sh">←</span><span class="al">B</span></span><span class="lbl">° ' "</span></button>
+        <button class="k k-func" onclick="handleInvKey()"><span class="k-annot"><span class="sh">x!</span><span class="al">C</span></span><span class="lbl">x⁻¹</span></button>
+        <button class="k k-func" onclick="handleTrigKey('sin')"><span class="k-annot"><span class="sh">sin⁻¹</span><span class="al">D</span></span><span class="lbl">sin</span></button>
+        <button class="k k-func" onclick="handleTrigKey('cos')"><span class="k-annot"><span class="sh">cos⁻¹</span><span class="al">E</span></span><span class="lbl">cos</span></button>
+        <button class="k k-func" onclick="handleTrigKey('tan')"><span class="k-annot"><span class="sh">tan⁻¹</span><span class="al">F</span></span><span class="lbl">tan</span></button>
+      </div>
+
+      <div class="grid6">
+        <button class="k k-func" onclick="handleStoKey()"><span class="k-annot"><span class="sh">RECALL</span><span class="al">x</span></span><span class="lbl">STO</span></button>
+        <button class="k k-func" onclick="handleEngKey()"><span class="k-annot"><span class="sh">←</span><span class="al">y</span></span><span class="lbl">ENG</span></button>
+        <button class="k k-func" onclick="handleOpenParenKey()"><span class="k-annot"><span class="sh">%</span><span class="al">z</span></span><span class="lbl">(</span></button>
+        <button class="k k-func" onclick="handleCloseParenKey()"><span class="k-annot"><span class="sh">,</span><span class="al">i</span></span><span class="lbl">)</span></button>
+        <button class="k k-func" onclick="toggleFormat()"><span class="k-annot"><span class="sh">a b/c</span><span class="al"></span></span><span class="lbl">S⇔D</span></button>
+        <button class="k k-func" onclick="handleMPlusKey()"><span class="k-annot"><span class="sh">M-</span><span class="al">M</span></span><span class="lbl">M+</span></button>
+      </div>
+
+      <!-- numeric grid -->
+      <div class="grid5">
+        <button class="k k-num" onclick="handleDigitShift('7','CONST')"><span class="k-annot"><span class="sh">CONST</span><span class="al"></span></span><span class="lbl">7</span></button>
+        <button class="k k-num" onclick="handleDigitShift('8','CONV')"><span class="k-annot"><span class="sh">CONV</span><span class="al"></span></span><span class="lbl">8</span></button>
+        <button class="k k-num" onclick="handleDigitShift('9','RESET')"><span class="k-annot"><span class="sh">RESET</span><span class="al"></span></span><span class="lbl">9</span></button>
+        <button class="k k-action k-del" onclick="del()"><span class="k-annot"><span class="sh">INS</span><span class="al"></span></span><span class="lbl">DEL</span></button>
+        <button class="k k-action k-ac" onclick="clearAll()"><span class="k-annot"><span class="sh">OFF</span><span class="al"></span></span><span class="lbl">AC</span></button>
+      </div>
+
+      <div class="grid5">
+        <button class="k k-num" onclick="handleDigitShift('4','MATRIX')"><span class="k-annot"><span class="sh">MATRIX</span><span class="al"></span></span><span class="lbl">4</span></button>
+        <button class="k k-num" onclick="handleDigitShift('5','VECTOR')"><span class="k-annot"><span class="sh">VECTOR</span><span class="al"></span></span><span class="lbl">5</span></button>
+        <button class="k k-num" onclick="appendToActive('6')"><span class="k-annot"><span class="sh"></span><span class="al"></span></span><span class="lbl">6</span></button>
+        <button class="k k-num small" onclick="handleTimesKey()"><span class="k-annot"><span class="sh">nPr</span><span class="al"></span></span><span class="lbl">×</span></button>
+        <button class="k k-num small" onclick="handleDivKey()"><span class="k-annot"><span class="sh">nCr</span><span class="al"></span></span><span class="lbl">÷</span></button>
+      </div>
+
+      <div class="grid5">
+        <button class="k k-num" onclick="handleDigitShift('1','STAT')"><span class="k-annot"><span class="sh">STAT</span><span class="al"></span></span><span class="lbl">1</span></button>
+        <button class="k k-num" onclick="handleDigitShift('2','CMPLX')"><span class="k-annot"><span class="sh">CMPLX</span><span class="al"></span></span><span class="lbl">2</span></button>
+        <button class="k k-num" onclick="handleDigitShift('3','BASE-N')"><span class="k-annot"><span class="sh">BASE-N</span><span class="al"></span></span><span class="lbl">3</span></button>
+        <button class="k k-num small" onclick="handlePlusKey()"><span class="k-annot"><span class="sh">Pol</span><span class="al"></span></span><span class="lbl">+</span></button>
+        <button class="k k-num small" onclick="handleMinusKey()"><span class="k-annot"><span class="sh">Rec</span><span class="al"></span></span><span class="lbl">−</span></button>
+      </div>
+
+      <div class="grid5">
+        <button class="k k-num" onclick="handleZeroKey()"><span class="k-annot"><span class="sh">Rnd</span><span class="al"></span></span><span class="lbl">0</span></button>
+        <button class="k k-num" onclick="handleDotKey()"><span class="k-annot"><span class="sh">Ran#</span><span class="al">RanInt</span></span><span class="lbl">•</span></button>
+        <button class="k k-num small" onclick="handleE10Key()"><span class="k-annot"><span class="sh">π</span><span class="al">e</span></span><span class="lbl">×10ˣ</span></button>
+        <button class="k k-num small" onclick="handleAnsKey()"><span class="k-annot"><span class="sh">%</span><span class="al">PreAns</span></span><span class="lbl">Ans</span></button>
+        <button class="k k-num" onclick="handleEqualsKey()"><span class="k-annot"><span class="sh">≈</span><span class="al"></span></span><span class="lbl">=</span></button>
+      </div>
+
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalBg(event)">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span id="modalTitle"></span>
+          <button onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ===================== Casio ClassWiz-style calculator engine ===================== */
+
+let tokens = [];
+let active = null;
+let activeField = null;
+
+let isShift = false;
+let isAlpha = false;
+let angleMode = 'D';
+let preferFraction = true;
+let lastAns = 0;
+let lastResultValue = null;
+let hasResult = false;
+let errorMessage = null;
+let specialResultText = null;
+let toastTO = null;
+let currentMode = 'COMP';
+let currentBaseRadix = 10;
+let statData = [];
+
+const CONSTANTS = [
+  { name:'سرعة الضوء (c)', value:299792458 },
+  { name:'ثابت بلانك (h)', value:6.62607015e-34 },
+  { name:'شحنة الإلكترون (e)', value:1.602176634e-19 },
+  { name:'عدد أفوجادرو (Nₐ)', value:6.02214076e23 },
+  { name:'ثابت الغازات (R)', value:8.31446261815324 },
+  { name:'الجاذبية الأرضية (g)', value:9.80665 },
+  { name:'ثابت الجذب العام (G)', value:6.6743e-11 },
+  { name:'كتلة الإلكترون (mₑ)', value:9.1093837015e-31 },
+  { name:'كتلة البروتون (mₚ)', value:1.67262192369e-27 },
+  { name:'ثابت بولتزمان (k)', value:1.380649e-23 }
+];
+
+const CONVERSIONS = [
+  { name:'كم → ميل', fn:x => x*0.621371 },
+  { name:'ميل → كم', fn:x => x/0.621371 },
+  { name:'كجم → رطل', fn:x => x*2.20462 },
+  { name:'رطل → كجم', fn:x => x/2.20462 },
+  { name:'متر → قدم', fn:x => x*3.28084 },
+  { name:'قدم → متر', fn:x => x/3.28084 },
+  { name:'°مئوية → °فهرنهايت', fn:x => x*9/5+32 },
+  { name:'°فهرنهايت → °مئوية', fn:x => (x-32)*5/9 },
+  { name:'لتر → جالون', fn:x => x*0.264172 },
+  { name:'جالون → لتر', fn:x => x/0.264172 }
+];
+
+const OPTN_ITEMS = [
+  { name:'Pol( — تحويل إلى قطبي', ins:'pol(' },
+  { name:'Rec( — تحويل إلى مستطيلي', ins:'rec(' },
+  { name:'٪ — نسبة مئوية', ins:'%' },
+  { name:'nPr — التباديل', ins:'npr(' },
+  { name:'nCr — التوافيق', ins:'ncr(' },
+  { name:'° — درجات', ins:'°' },
+  { name:'! — المضروب (factorial)', ins:'!' },
+  { name:'π — النسبة التقريبية', ins:'π' },
+  { name:'e — الأساس الطبيعي', ins:'e' }
+];
+
+/* ---------- variables (X,Y,A-F,M,Z) ---------- */
+let vars = { A:0, B:0, C:0, D:0, E:0, F:0, X:0, Y:0, M:0, Z:0 };
+let stoArmed = false;
+function varKeyFor(letter){
+  const map = { x:'X', y:'Y', A:'A', B:'B', C:'C', D:'D', E:'E', F:'F', M:'M', z:'Z' };
+  return map[letter] || null;
+}
+
+/* ---------- complex numbers ---------- */
+class Cx {
+  constructor(re, im){ this.re = re; this.im = im || 0; }
+  add(o){ return new Cx(this.re+o.re, this.im+o.im); }
+  sub(o){ return new Cx(this.re-o.re, this.im-o.im); }
+  mul(o){ return new Cx(this.re*o.re - this.im*o.im, this.re*o.im + this.im*o.re); }
+  div(o){ const d = o.re*o.re + o.im*o.im; return new Cx((this.re*o.re + this.im*o.im)/d, (this.im*o.re - this.re*o.im)/d); }
+  neg(){ return new Cx(-this.re, -this.im); }
+  abs(){ return Math.hypot(this.re, this.im); }
+  arg(){ return Math.atan2(this.im, this.re); }
+  pow(n){
+    if (Number.isInteger(n)){
+      if (n===0) return new Cx(1,0);
+      let result = new Cx(1,0), base = this, e = Math.abs(n);
+      while (e>0){ if (e&1) result = result.mul(base); base = base.mul(base); e >>= 1; }
+      return n<0 ? new Cx(1,0).div(result) : result;
+    }
+    const r = Math.pow(this.abs(), n), th = this.arg()*n;
+    return new Cx(r*Math.cos(th), r*Math.sin(th));
+  }
+  toString(){
+    const re = Math.round(this.re*1e9)/1e9, im = Math.round(this.im*1e9)/1e9;
+    if (im === 0) return String(re);
+    if (re === 0) return (im===1?'':im===-1?'-':im) + 'i';
+    const sign = im>0?'+':'-';
+    const imAbs = Math.abs(im);
+    return re + sign + (imAbs===1?'':imAbs) + 'i';
+  }
+}
+function parseComplex(str){
+  let s = str.replace(/\s+/g,'');
+  let pos = 0;
+  function peek(){ return s[pos]; }
+  function eat(ch){ if (s[pos]!==ch) throw new Error('expected '+ch); pos++; }
+  function parseNumber(){ let start=pos; while(pos<s.length && /[0-9.]/.test(s[pos])) pos++; return parseFloat(s.slice(start,pos)); }
+  function parseAtom(){
+    if (peek()==='('){ eat('('); const v=parseExpr(); eat(')'); return v; }
+    if (peek()==='-'){ eat('-'); return parseAtom().neg(); }
+    if (peek()==='+'){ eat('+'); return parseAtom(); }
+    if (peek()==='i'){ pos++; return new Cx(0,1); }
+    if (peek() && /[0-9.]/.test(peek())){
+      const num = parseNumber();
+      if (peek()==='i'){ pos++; return new Cx(0, num); }
+      return new Cx(num, 0);
+    }
+    throw new Error('unexpected token');
+  }
+  function parsePow(){
+    let base = parseAtom();
+    if (peek()==='^'){ pos++; const exp = parsePow(); const n = exp.im===0 ? exp.re : NaN; return base.pow(n); }
+    return base;
+  }
+  function parseTerm(){
+    let node = parsePow();
+    while (peek()==='*' || peek()==='/' || (peek() && /[0-9.i(]/.test(peek()))){
+      if (peek()==='*'){ pos++; node = node.mul(parsePow()); }
+      else if (peek()==='/'){ pos++; node = node.div(parsePow()); }
+      else node = node.mul(parsePow());
+    }
+    return node;
+  }
+  function parseExpr(){
+    let node = parseTerm();
+    while (peek()==='+' || peek()==='-'){ const op = peek(); pos++; const rhs = parseTerm(); node = op==='+' ? node.add(rhs) : node.sub(rhs); }
+    return node;
+  }
+  const result = parseExpr();
+  if (pos !== s.length) throw new Error('bad syntax');
+  return result;
+}
+
+/* ---------- matrices & vectors ---------- */
+function matAdd(A,B){ return A.map((row,i)=>row.map((v,j)=>v+B[i][j])); }
+function matSub(A,B){ return A.map((row,i)=>row.map((v,j)=>v-B[i][j])); }
+function matMul(A,B){
+  const n=A.length, m=B[0].length, k=B.length;
+  const R=[];
+  for(let i=0;i<n;i++){ R.push([]); for(let j=0;j<m;j++){ let s=0; for(let x=0;x<k;x++) s+=A[i][x]*B[x][j]; R[i].push(s); } }
+  return R;
+}
+function matDet2(A){ return A[0][0]*A[1][1]-A[0][1]*A[1][0]; }
+function matDet3(A){
+  return A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1])
+       - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0])
+       + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+}
+function matTranspose(A){ return A[0].map((_,j)=>A.map(row=>row[j])); }
+function matInv2(A){
+  const det = matDet2(A);
+  if (Math.abs(det) < 1e-12) throw new Error('singular');
+  return [[A[1][1]/det, -A[0][1]/det],[-A[1][0]/det, A[0][0]/det]];
+}
+function vecAdd(a,b){ return a.map((v,i)=>v+b[i]); }
+function vecSub(a,b){ return a.map((v,i)=>v-b[i]); }
+function vecDot(a,b){ return a.reduce((s,v,i)=>s+v*b[i],0); }
+function vecCross(a,b){ return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+function vecMag(a){ return Math.sqrt(a.reduce((s,v)=>s+v*v,0)); }
+
+/* ---------- equations & ratios ---------- */
+function solveLinear2(a1,b1,c1,a2,b2,c2){
+  const det = a1*b2-a2*b1;
+  if (Math.abs(det) < 1e-12) throw new Error('no unique solution');
+  return [(c1*b2-c2*b1)/det, (a1*c2-a2*c1)/det];
+}
+function solveLinear3(M, C){
+  const det = matDet3(M);
+  if (Math.abs(det) < 1e-12) throw new Error('no unique solution');
+  function replaceCol(M,col,vals){ return M.map((row,i)=> row.map((v,j)=> j===col ? vals[i] : v)); }
+  return [ matDet3(replaceCol(M,0,C))/det, matDet3(replaceCol(M,1,C))/det, matDet3(replaceCol(M,2,C))/det ];
+}
+function solveQuadratic(a,b,c){
+  const disc = b*b-4*a*c;
+  if (disc >= 0){ const sq = Math.sqrt(disc); return [(-b+sq)/(2*a), (-b-sq)/(2*a)]; }
+  const sq = Math.sqrt(-disc);
+  return [new Cx(-b/(2*a), sq/(2*a)), new Cx(-b/(2*a), -sq/(2*a))];
+}
+function gcdCalc(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ const t=a%b; a=b; b=t; } return a; }
+function simplifyRatio(parts){
+  const scale = 1e6;
+  let ints = parts.map(p=>Math.round(p*scale));
+  let g = ints.reduce((a,b)=>gcdCalc(a,b));
+  if (g===0) g=1;
+  return ints.map(v=>v/g);
+}
+
+/* ---------- calculus tools (numeric, single variable x) ---------- */
+function scopeWithoutX(){ const s = buildScope(); delete s.x; return s; }
+function fOfX(exprStr){
+  let raw = exprStr.replace(/\^/g,'**');
+  raw = translateOperators(raw);
+  raw = handleFactorial(raw);
+  raw = handlePercent(raw);
+  raw = balanceParens(raw);
+  const scope = scopeWithoutX();
+  const argNames = Object.keys(scope);
+  const argValues = argNames.map(k => scope[k]);
+  const fn = new Function('x', ...argNames, 'return (' + raw + ')');
+  return (xv) => fn(xv, ...argValues);
+}
+function numericDerivative(exprStr, x0){
+  const f = fOfX(exprStr);
+  const h = Math.max(1e-6, Math.abs(x0)*1e-6);
+  return (f(x0+h)-f(x0-h))/(2*h);
+}
+function numericIntegral(exprStr, a, b, n){
+  n = n || 1000; if (n%2===1) n++;
+  const f = fOfX(exprStr);
+  const h = (b-a)/n;
+  let sum = f(a)+f(b);
+  for(let i=1;i<n;i++){ const x=a+i*h; sum += f(x) * (i%2===0?2:4); }
+  return sum*h/3;
+}
+function numericSolve(exprStr, guess){
+  const f = fOfX(exprStr);
+  let x = guess;
+  for(let i=0;i<100;i++){
+    const h=1e-6, fx=f(x), dfx=(f(x+h)-f(x-h))/(2*h);
+    if (Math.abs(dfx)<1e-12) break;
+    const nx = x - fx/dfx;
+    if (!isFinite(nx)) break;
+    if (Math.abs(nx-x)<1e-10){ x=nx; break; }
+    x = nx;
+  }
+  if (!isFinite(x) || Math.abs(f(x)) > 1e-4){
+    let found=null, step=0.01;
+    for(let i=-2000;i<=2000 && found===null;i++){
+      const x1=guess+i*step, x2=x1+step;
+      try{
+        const y1=f(x1), y2=f(x2);
+        if (isFinite(y1) && isFinite(y2) && y1*y2<=0){
+          let lo=x1, hi=x2;
+          for(let k=0;k<60;k++){ const mid=(lo+hi)/2; const ym=f(mid); if ((ym<0)===(f(lo)<0)) lo=mid; else hi=mid; }
+          found=(lo+hi)/2;
+        }
+      } catch(e){}
+    }
+    if (found!==null) return found;
+    throw new Error('no root');
+  }
+  return x;
+}
+function buildTable(exprStr, start, end, step){
+  const f = fOfX(exprStr);
+  const rows=[]; let count=0;
+  for(let x=start; x<=end+1e-9 && count<30; x+=step){ rows.push([x, f(x)]); count++; }
+  return rows;
+}
+
+function toast(msg){
+  const el = document.getElementById('toastEl');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTO);
+  toastTO = setTimeout(()=> el.classList.remove('show'), 1800);
+}
+
+function consumeModifiers(){
+  const s = isShift, a = isAlpha;
+  isShift = false; isAlpha = false;
+  updateModifierUI();
+  return { shift: s, alpha: a };
+}
+function updateModifierUI(){
+  document.getElementById('btnShift').classList.toggle('active-shift', isShift);
+  document.getElementById('btnAlpha').classList.toggle('active-alpha', isAlpha);
+  document.getElementById('badgeShift').style.display = isShift ? 'inline' : 'none';
+  document.getElementById('badgeAlpha').style.display = isAlpha ? 'inline' : 'none';
+}
+function toggleShift(){ isShift = !isShift; if(isShift) isAlpha = false; updateModifierUI(); }
+function toggleAlpha(){ isAlpha = !isAlpha; if(isAlpha) isShift = false; updateModifierUI(); }
+
+function freshIfNeeded(){
+  if (hasResult){ tokens = []; active = null; activeField = null; hasResult = false; }
+  errorMessage = null;
+  specialResultText = null;
+}
+
+function appendToActive(str){
+  freshIfNeeded();
+  if (active === null){
+    const last = tokens[tokens.length-1];
+    if (last && last.t === 'txt') last.v += str;
+    else tokens.push({ t:'txt', v:str });
+  } else {
+    active[activeField] += str;
+  }
+  render();
+}
+function lastVisibleCharClass(){
+  if (active !== null){
+    const s = active[activeField] || '';
+    return /[0-9)π]$/.test(s) ? 'num' : (s ? 'other' : 'empty');
+  }
+  const last = tokens[tokens.length-1];
+  if (!last) return 'empty';
+  if (last.t === 'txt') return /[0-9)π]$/.test(last.v) ? 'num' : (last.v ? 'other' : 'empty');
+  if (last.t === 'frac' || last.t === 'sqrt' || last.t === 'sup') return 'num';
+  return 'other';
+}
+function appendVariable(letter){
+  const key = varKeyFor(letter);
+  if (stoArmed){
+    stoArmed = false;
+    if (!key){ toast('هذا الرمز غير قابل للتخزين'); return; }
+    evaluateExpression();
+    if (lastResultValue !== null && !errorMessage){
+      vars[key] = lastResultValue;
+      toast(letter + ' = ' + formatPlain(vars[key]));
+    }
+    clearAll();
+    return;
+  }
+  freshIfNeeded();
+  const needsMult = lastVisibleCharClass() === 'num';
+  const toAppend = (needsMult ? '×' : '') + letter;
+  if (active === null){
+    const last = tokens[tokens.length-1];
+    if (last && last.t === 'txt') last.v += toAppend;
+    else tokens.push({ t:'txt', v:toAppend });
+  } else {
+    active[activeField] += toAppend;
+  }
+  render();
+}
+function appendAlpha(letter){
+  if (currentMode === 'BASE'){ appendToActive(letter); return; }
+  appendVariable(letter);
+}
+
+function openFraction(){
+  freshIfNeeded();
+  if (active !== null){ appendToActive('/'); return; }
+  const tok = { t:'frac', num:'', den:'' };
+  tokens.push(tok); active = tok; activeField = 'num';
+  render();
+}
+function openPow(prefixText){
+  freshIfNeeded();
+  if (active !== null){ appendToActive((prefixText||'') + '^'); return; }
+  if (prefixText){
+    const last = tokens[tokens.length-1];
+    if (last && last.t === 'txt') last.v += prefixText;
+    else tokens.push({ t:'txt', v:prefixText });
+  }
+  const tok = { t:'sup', v:'' };
+  tokens.push(tok); active = tok; activeField = 'v';
+  render();
+}
+function closedSup(val){
+  freshIfNeeded();
+  if (active !== null){ appendToActive('^'+val); return; }
+  tokens.push({ t:'sup', v:val });
+  render();
+}
+function openSqrt(){
+  freshIfNeeded();
+  if (active !== null){ appendToActive('sqrt('); return; }
+  const tok = { t:'sqrt', content:'' };
+  tokens.push(tok); active = tok; activeField = 'content';
+  render();
+}
+function exitField(){
+  if (active === null) return;
+  if (active.t === 'frac' && activeField === 'num') activeField = 'den';
+  else { active = null; activeField = null; }
+  render();
+}
+function dpadLeft(){
+  if (active === null){
+    const last = tokens[tokens.length-1];
+    if (last){
+      if (last.t === 'frac'){ active = last; activeField = 'den'; }
+      else if (last.t === 'sup'){ active = last; activeField = 'v'; }
+      else if (last.t === 'sqrt'){ active = last; activeField = 'content'; }
+    }
+  } else if (active.t === 'frac' && activeField === 'den'){ activeField = 'num'; }
+  render();
+}
+function del(){
+  errorMessage = null;
+  if (hasResult){ clearAll(); return; }
+  if (active === null){
+    const last = tokens[tokens.length-1];
+    if (!last) return;
+    if (last.t === 'txt'){ last.v = last.v.slice(0,-1); if (last.v === '') tokens.pop(); }
+    else tokens.pop();
+  } else {
+    const f = active[activeField];
+    if (f && f.length > 0) active[activeField] = f.slice(0,-1);
+    else if (active.t === 'frac' && activeField === 'den') activeField = 'num';
+    else {
+      const idx = tokens.indexOf(active);
+      if (idx >= 0) tokens.splice(idx,1);
+      active = null; activeField = null;
+    }
+  }
+  render();
+}
+function clearAll(){
+  tokens = []; active = null; activeField = null; errorMessage = null; hasResult = false; lastResultValue = null; specialResultText = null;
+  render();
+}
+function resetAll(){ vars = { A:0, B:0, C:0, D:0, E:0, F:0, X:0, Y:0, M:0, Z:0 }; angleMode = 'D'; preferFraction = true; clearAll(); toast('تمت إعادة الضبط'); }
+
+/* ---------- eval string construction ---------- */
+function translateOperators(str){
+  if (!str) return '';
+  let s = str;
+  s = s.split('×').join('*');
+  s = s.split('÷').join('/');
+  s = s.split('−').join('-');
+  s = s.split('π').join('PI');
+  s = s.split('°').join('');
+  s = s.replace(/\bAns\b/g, 'ans');
+  s = s.replace(/\be\b/g, 'EULER');
+  return s;
+}
+function fieldToEval(str){ return translateOperators(str || ''); }
+function tokensToEval(list){
+  let out = '';
+  for (const tok of list){
+    if (tok.t === 'txt') out += fieldToEval(tok.v);
+    else if (tok.t === 'sup') out += '**(' + (fieldToEval(tok.v) || '0') + ')';
+    else if (tok.t === 'frac') out += '(' + (fieldToEval(tok.num) || '0') + ')/(' + (fieldToEval(tok.den) || '1') + ')';
+    else if (tok.t === 'sqrt') out += 'sqrt(' + (fieldToEval(tok.content) || '0') + ')';
+  }
+  return out;
+}
+function balanceParens(s){
+  let opens = 0;
+  for (const ch of s){ if (ch === '(') opens++; else if (ch === ')') opens = Math.max(0, opens-1); }
+  return s + ')'.repeat(opens);
+}
+function handleFactorial(s){
+  const re = /(\d+(?:\.\d+)?|\)|EULER|PI)!/;
+  let guard = 0;
+  while (re.test(s) && guard < 50){
+    s = s.replace(re, (m, g1) => {
+      if (g1 === ')'){
+        const idx = s.indexOf(m);
+        let depth = 0, start = -1;
+        for (let i = idx - 1; i >= 0; i--){
+          if (s[i] === ')') depth++;
+          else if (s[i] === '('){ if (depth === 0){ start = i; break; } depth--; }
+        }
+        if (start === -1) return m;
+        const inner = s.slice(start, idx);
+        return 'fact(' + inner + ')';
+      }
+      return 'fact(' + g1 + ')';
+    });
+    guard++;
+  }
+  return s;
+}
+function handlePercent(s){ return s.replace(/(\d+(?:\.\d+)?)%/g, '($1/100)'); }
+
+function toRad(x){ return angleMode === 'D' ? x * Math.PI / 180 : x; }
+function fromRad(x){ return angleMode === 'D' ? x * 180 / Math.PI : x; }
+function factImpl(n){ n = Math.round(n); if (n < 0) throw new Error('Math ERROR'); let r = 1; for (let i=2;i<=n;i++) r*=i; return r; }
+
+function buildScope(){
+  return {
+    PI: Math.PI, EULER: Math.E, ans: lastAns,
+    x: vars.X, y: vars.Y, A: vars.A, B: vars.B, C: vars.C, D: vars.D, E: vars.E, F: vars.F, M: vars.M, z: vars.Z,
+    sin: x => Math.sin(toRad(x)), cos: x => Math.cos(toRad(x)), tan: x => Math.tan(toRad(x)),
+    asin: x => fromRad(Math.asin(x)), acos: x => fromRad(Math.acos(x)), atan: x => fromRad(Math.atan(x)),
+    log: x => Math.log10(x), ln: x => Math.log(x), sqrt: x => Math.sqrt(x), cbrt: x => Math.cbrt(x),
+    exp: x => Math.exp(x), fact: factImpl,
+    npr: (n,r) => factImpl(n)/factImpl(n-r), ncr: (n,r) => factImpl(n)/(factImpl(r)*factImpl(n-r)),
+    nroot: (n,x) => Math.pow(x, 1/n), rnd: x => Math.round(x),
+    ran: () => Math.random(), ranInt: (a,b) => Math.floor(Math.random()*(b-a+1))+a,
+    pol: (x,y) => Math.sqrt(x*x+y*y), rec: (r,theta) => r*Math.cos(toRad(theta))
+  };
+}
+
+function evaluateExpression(){
+  if (currentMode === 'BASE'){ evaluateBaseN(); return; }
+  if (currentMode === 'STAT'){ addStatEntry(); return; }
+  let raw = tokensToEval(tokens);
+  if (!raw.trim()){ return; }
+  raw = handleFactorial(raw);
+  raw = handlePercent(raw);
+  if (raw.indexOf('=') !== -1){ evaluateEquality(raw); return; }
+  raw = balanceParens(raw);
+  const scope = buildScope();
+  const argNames = Object.keys(scope);
+  const argValues = argNames.map(k => scope[k]);
+  try{
+    const fn = new Function(...argNames, 'return (' + raw + ')');
+    let val = fn(...argValues);
+    if (typeof val !== 'number' || !isFinite(val)) throw new Error('Math ERROR');
+    lastResultValue = val; lastAns = val; hasResult = true; errorMessage = null; specialResultText = null;
+  } catch(e){
+    errorMessage = 'Math ERROR'; lastResultValue = null; hasResult = true; specialResultText = null;
+  }
+  render();
+}
+
+/* ---------- ALPHA+CALC "=" : equality check or variable assignment ---------- */
+function evaluateEquality(raw){
+  const idx = raw.indexOf('=');
+  const leftRaw = raw.slice(0, idx);
+  const rightRaw = raw.slice(idx + 1);
+  const varMatch = /^([xyzABCDEFM])$/.exec(leftRaw.trim());
+  const scope = buildScope();
+  const argNames = Object.keys(scope);
+  const argValues = argNames.map(k => scope[k]);
+  hasResult = true;
+  try{
+    if (varMatch){
+      const rBal = balanceParens(rightRaw);
+      if (!rBal.trim()) throw new Error('bad');
+      const fn = new Function(...argNames, 'return (' + rBal + ')');
+      const val = fn(...argValues);
+      if (typeof val !== 'number' || !isFinite(val)) throw new Error('bad');
+      const key = varKeyFor(varMatch[1]);
+      vars[key] = val;
+      lastResultValue = val; lastAns = val; errorMessage = null;
+      specialResultText = '<span dir="ltr">' + varMatch[1] + ' = ' + formatPlain(val) + '</span>';
+    } else {
+      const lBal = balanceParens(leftRaw);
+      const rBal = balanceParens(rightRaw);
+      if (!lBal.trim() || !rBal.trim()) throw new Error('bad');
+      const fnL = new Function(...argNames, 'return (' + lBal + ')');
+      const fnR = new Function(...argNames, 'return (' + rBal + ')');
+      const lv = fnL(...argValues);
+      const rv = fnR(...argValues);
+      if (typeof lv !== 'number' || typeof rv !== 'number' || !isFinite(lv) || !isFinite(rv)) throw new Error('bad');
+      lastResultValue = null;
+      if (Math.abs(lv - rv) < 1e-9){ errorMessage = null; specialResultText = 'صحيح ✓'; }
+      else { errorMessage = 'Error'; specialResultText = null; }
+    }
+  } catch(e){
+    errorMessage = 'Math ERROR'; lastResultValue = null; specialResultText = null;
+  }
+  render();
+}
+
+/* ---------- BASE-N mode ---------- */
+function setBaseRadix(r){
+  currentBaseRadix = r;
+  ['2','8','10','16'].forEach(b => document.getElementById('baseBtn'+b).classList.toggle('active', Number(b) === r));
+  render();
+}
+function evaluateBaseN(){
+  let raw = tokens.map(t => t.t === 'txt' ? t.v : '').join('');
+  raw = raw.split('×').join('*').split('÷').join('/');
+  if (!raw.trim()){ return; }
+  try{
+    const converted = raw.replace(/[0-9A-Fa-f]+/g, (m) => {
+      const dec = parseInt(m, currentBaseRadix);
+      if (isNaN(dec)) throw new Error('bad digit');
+      return dec.toString(10);
+    });
+    let val = new Function('return (' + balanceParens(converted) + ')')();
+    val = Math.trunc(val);
+    lastResultValue = val; hasResult = true; errorMessage = null;
+    renderBaseResult(val);
+  } catch(e){
+    errorMessage = 'Math ERROR'; hasResult = true; lastResultValue = null;
+    render();
+  }
+}
+function renderBaseResult(val){
+  const neg = val < 0; const av = Math.abs(val);
+  const rows = [
+    ['DEC', (neg?'−':'') + av.toString(10)],
+    ['HEX', (neg?'−':'') + av.toString(16).toUpperCase()],
+    ['OCT', (neg?'−':'') + av.toString(8)],
+    ['BIN', (neg?'−':'') + av.toString(2)]
+  ];
+  const html = rows.map(r => '<div style="display:flex;justify-content:space-between;gap:10px;"><span style="opacity:.65;">'+r[0]+'</span><span>'+r[1]+'</span></div>').join('');
+  const el = document.getElementById('resultEl');
+  el.classList.remove('error');
+  el.innerHTML = '<div style="font-size:15px;line-height:1.55;text-align:end;width:100%;">' + html + '</div>';
+  document.getElementById('formatPill').style.visibility = 'hidden';
+}
+
+/* ---------- STAT mode ---------- */
+function addStatEntry(){
+  let raw = tokensToEval(tokens);
+  if (!raw.trim()){ return; }
+  try{
+    raw = handlePercent(handleFactorial(raw));
+    const scope = buildScope();
+    const argNames = Object.keys(scope);
+    const argValues = argNames.map(k => scope[k]);
+    const fn = new Function(...argNames, 'return (' + balanceParens(raw) + ')');
+    const val = fn(...argValues);
+    if (typeof val !== 'number' || !isFinite(val)) throw new Error('bad');
+    statData.push(val);
+    tokens = []; active = null; activeField = null; hasResult = false; errorMessage = null;
+    updateStatBar();
+    toast('تمت الإضافة إلى القائمة — n = ' + statData.length);
+  } catch(e){
+    errorMessage = 'Math ERROR'; hasResult = true;
+  }
+  render();
+}
+function updateStatBar(){
+  const el = document.getElementById('statCount');
+  if (el) el.textContent = 'n = ' + statData.length;
+}
+function showStatSummary(){
+  if (statData.length === 0){ toast('لا توجد بيانات مُدخلة بعد'); return; }
+  const n = statData.length;
+  const sum = statData.reduce((a,b) => a+b, 0);
+  const mean = sum / n;
+  const sumSq = statData.reduce((a,b) => a+b*b, 0);
+  const sampleVar = n > 1 ? (sumSq - n*mean*mean) / (n-1) : 0;
+  const popVar = (sumSq - n*mean*mean) / n;
+  const rows = [
+    ['n (عدد القيم)', n],
+    ['Σx (المجموع)', formatPlain(sum)],
+    ['Σx²', formatPlain(sumSq)],
+    ['x̄ (المتوسط)', formatPlain(mean)],
+    ['sx (انحراف العينة)', formatPlain(Math.sqrt(Math.max(sampleVar,0)))],
+    ['σx (انحراف المجتمع)', formatPlain(Math.sqrt(Math.max(popVar,0)))]
+  ];
+  const html = rows.map(r => '<div class="modal-list-item"><span class="name">'+r[0]+'</span><span class="val">'+r[1]+'</span></div>').join('');
+  openModal('ملخص STAT', html);
+}
+function clearStatData(){ statData = []; updateStatBar(); toast('تم مسح قائمة البيانات'); }
+
+/* ---------- modes & modal system ---------- */
+function modeLabelAr(mode){ return { COMP:'COMP', BASE:'BASE-N', STAT:'STAT' }[mode] || mode; }
+function setMode(mode){
+  currentMode = mode;
+  clearAll();
+  document.getElementById('modeBadge').textContent = '▦ MENU: ' + modeLabelAr(mode);
+  document.getElementById('basenBar').classList.toggle('show', mode === 'BASE');
+  document.getElementById('statBar').classList.toggle('show', mode === 'STAT');
+  if (mode === 'STAT'){ statData = []; updateStatBar(); }
+  closeModal();
+  render();
+}
+function openModal(title, bodyHtml){
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').innerHTML = bodyHtml;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
+function closeModalBg(e){ if (e.target.id === 'modalOverlay') closeModal(); }
+
+function openMenuModal(){
+  const modes = [
+    { id:'COMP', label:'الحاسبة', icon:'🖩', action:"setMode('COMP')" },
+    { id:'BASE', label:'BASE-N', icon:'🔢', action:"setMode('BASE')" },
+    { id:'STAT', label:'STAT', icon:'📊', action:"setMode('STAT')" },
+    { id:'CMPLX', label:'CMPLX', icon:'ⅈ', action:"openComplexModal()" },
+    { id:'MATRIX', label:'MATRIX', icon:'▦', action:"openMatrixModal(2)" },
+    { id:'VECTOR', label:'VECTOR', icon:'→', action:"openVectorModal(3)" },
+    { id:'TABLE', label:'TABLE', icon:'▤', action:"openTableModal()" },
+    { id:'EQN', label:'EQN', icon:'=', action:"openEqnModal('lin2')" },
+    { id:'RATIO', label:'RATIO', icon:'∶', action:"openRatioModal()" }
+  ];
+  const html = '<div class="modal-grid">' + modes.map(m =>
+    '<div class="modal-app" onclick="' + m.action + '">'
+    + '<span class="ic">' + m.icon + '</span><span class="lb">' + m.label + '</span></div>'
+  ).join('') + '</div><div class="modal-note">COMP وBASE-N وSTAT أوضاع كاملة تبدّل لوحة المفاتيح نفسها. باقي الأدوات (CMPLX، المصفوفات، المتجهات، TABLE، EQN، RATIO) بتفتح في نافذة أدوات مخصّصة بنفس المنطق الحسابي الحقيقي.</div>';
+  openModal('اختر الوضع', html);
+}
+function openSetupModal(){
+  const html = ''
+    + '<div class="modal-toggle-row"><span class="name">وحدة الزاوية: ' + (angleMode === 'D' ? 'درجة (Deg)' : 'راديان (Rad)') + '</span>'
+    + '<div class="toggle-switch' + (angleMode === 'R' ? ' on' : '') + '" onclick="toggleAngle(); openSetupModal();"><div class="knob"></div></div></div>'
+    + '<div class="modal-toggle-row"><span class="name">صيغة النتيجة: ' + (preferFraction ? 'كسر' : 'عشري') + '</span>'
+    + '<div class="toggle-switch' + (preferFraction ? ' on' : '') + '" onclick="toggleFormat(); openSetupModal();"><div class="knob"></div></div></div>';
+  openModal('SETUP', html);
+}
+function openConstModal(){
+  const html = CONSTANTS.map((c,i) =>
+    '<div class="modal-list-item" onclick="insertConst(' + i + ')"><span class="name">' + c.name + '</span><span class="val">' + c.value.toExponential(4) + '</span></div>'
+  ).join('');
+  openModal('الثوابت العلمية', html);
+}
+function insertConst(i){ appendToActive('(' + CONSTANTS[i].value + ')'); closeModal(); }
+function openConvModal(){
+  const html = CONVERSIONS.map((c,i) =>
+    '<div class="modal-list-item" onclick="applyConv(' + i + ')"><span class="name">' + c.name + '</span></div>'
+  ).join('') + '<div class="modal-note">يتم تطبيق التحويل على القيمة الحالية في الشاشة.</div>';
+  openModal('تحويل الوحدات', html);
+}
+function applyConv(i){
+  evaluateExpression();
+  if (lastResultValue !== null && !errorMessage){
+    const v = CONVERSIONS[i].fn(lastResultValue);
+    tokens = [{ t:'txt', v: String(v) }];
+    lastResultValue = v; lastAns = v; hasResult = true;
+  }
+  closeModal();
+  render();
+}
+
+/* ---------- advanced tool modals: CMPLX / MATRIX / VECTOR / TABLE / EQN / RATIO / calculus ---------- */
+function openComplexModal(){
+  const html = ''
+    + '<div class="modal-note">استخدم i للوحدة التخيلية، مثال: (3+4i)*(1-2i)</div>'
+    + '<div class="tool-field"><label>التعبير</label><input type="text" id="cxExpr" placeholder="(2+3i)+(1-i)"></div>'
+    + '<button class="tool-compute" onclick="computeComplex()">= احسب</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('CMPLX — الأعداد المركبة', html);
+}
+function computeComplex(){
+  try{
+    const expr = document.getElementById('cxExpr').value;
+    const r = parseComplex(expr);
+    const modulus = r.abs(), arg = r.arg()*180/Math.PI;
+    document.getElementById('toolResult').innerHTML =
+      '<b>= ' + r.toString() + '</b><br><span style="opacity:.7;font-size:11px;">|z| = ' + formatPlain(modulus) + ' ، arg(z) = ' + formatPlain(arg) + '°</span>';
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR — تحقق من الصياغة</span>';
+  }
+}
+
+function openMatrixModal(size){
+  size = size || 2;
+  function grid(prefix){
+    let html = '<div style="display:grid;grid-template-columns:repeat(' + size + ',1fr);gap:4px;padding:0 6px;">';
+    for(let i=0;i<size;i++) for(let j=0;j<size;j++) html += '<input type="text" class="mat-cell" id="' + prefix + i + j + '" placeholder="0">';
+    html += '</div>';
+    return html;
+  }
+  const html = ''
+    + '<div class="tool-row" style="margin-bottom:6px;">'
+    + '<button class="tool-compute" onclick="openMatrixModal(2)">2×2</button>'
+    + '<button class="tool-compute" onclick="openMatrixModal(3)">3×3</button>'
+    + '</div>'
+    + '<div class="modal-note">المصفوفة A</div>' + grid('a')
+    + '<div class="modal-note" style="margin-top:8px;">المصفوفة B</div>' + grid('b')
+    + '<div class="tool-row" style="margin-top:8px;flex-wrap:wrap;">'
+    + '<button class="tool-compute" onclick="computeMatrix(\'add\',' + size + ')">A+B</button>'
+    + '<button class="tool-compute" onclick="computeMatrix(\'sub\',' + size + ')">A−B</button>'
+    + '<button class="tool-compute" onclick="computeMatrix(\'mul\',' + size + ')">A×B</button>'
+    + '<button class="tool-compute" onclick="computeMatrix(\'det\',' + size + ')">det(A)</button>'
+    + '<button class="tool-compute" onclick="computeMatrix(\'trans\',' + size + ')">Aᵀ</button>'
+    + (size===2 ? '<button class="tool-compute" onclick="computeMatrix(\'inv\',2)">A⁻¹</button>' : '')
+    + '</div>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('MATRIX', html);
+}
+function readMatrix(prefix, size){
+  const M=[];
+  for(let i=0;i<size;i++){ const row=[]; for(let j=0;j<size;j++){ const v=parseFloat(document.getElementById(prefix+i+j).value||'0'); row.push(isNaN(v)?0:v); } M.push(row); }
+  return M;
+}
+function matToHtml(M){
+  return '<div style="display:inline-grid;grid-template-columns:repeat(' + M[0].length + ',1fr);gap:4px;">' +
+    M.map(row=>row.map(v=>'<span style="padding:3px 7px;background:#1c2230;border-radius:5px;display:inline-block;">'+formatPlain(v)+'</span>').join('')).join('') + '</div>';
+}
+function computeMatrix(op, size){
+  try{
+    const A = readMatrix('a', size), B = readMatrix('b', size);
+    let out;
+    if (op==='add') out = matToHtml(matAdd(A,B));
+    else if (op==='sub') out = matToHtml(matSub(A,B));
+    else if (op==='mul') out = matToHtml(matMul(A,B));
+    else if (op==='det') out = '<b>det(A) = ' + formatPlain(size===2?matDet2(A):matDet3(A)) + '</b>';
+    else if (op==='trans') out = matToHtml(matTranspose(A));
+    else if (op==='inv') out = matToHtml(matInv2(A));
+    document.getElementById('toolResult').innerHTML = out;
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>';
+  }
+}
+
+function openVectorModal(dim){
+  dim = dim || 3;
+  function vrow(prefix){
+    let html = '<div class="tool-row">';
+    for(let i=0;i<dim;i++) html += '<input type="text" class="mat-cell" id="' + prefix + i + '" placeholder="0">';
+    html += '</div>';
+    return html;
+  }
+  const html = ''
+    + '<div class="tool-row" style="margin-bottom:6px;">'
+    + '<button class="tool-compute" onclick="openVectorModal(2)">2D</button>'
+    + '<button class="tool-compute" onclick="openVectorModal(3)">3D</button>'
+    + '</div>'
+    + '<div class="modal-note">المتجه A</div>' + vrow('va')
+    + '<div class="modal-note" style="margin-top:8px;">المتجه B</div>' + vrow('vb')
+    + '<div class="tool-row" style="margin-top:8px;flex-wrap:wrap;">'
+    + '<button class="tool-compute" onclick="computeVector(\'add\',' + dim + ')">A+B</button>'
+    + '<button class="tool-compute" onclick="computeVector(\'sub\',' + dim + ')">A−B</button>'
+    + '<button class="tool-compute" onclick="computeVector(\'dot\',' + dim + ')">A·B</button>'
+    + (dim===3 ? '<button class="tool-compute" onclick="computeVector(\'cross\',3)">A×B</button>' : '')
+    + '<button class="tool-compute" onclick="computeVector(\'mag\',' + dim + ')">|A|</button>'
+    + '</div>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('VECTOR', html);
+}
+function readVector(prefix, dim){
+  const v=[];
+  for(let i=0;i<dim;i++){ const x=parseFloat(document.getElementById(prefix+i).value||'0'); v.push(isNaN(x)?0:x); }
+  return v;
+}
+function vecToHtml(v){ return '(' + v.map(formatPlain).join(', ') + ')'; }
+function computeVector(op, dim){
+  try{
+    const A = readVector('va', dim), B = readVector('vb', dim);
+    let out;
+    if (op==='add') out = '<b>' + vecToHtml(vecAdd(A,B)) + '</b>';
+    else if (op==='sub') out = '<b>' + vecToHtml(vecSub(A,B)) + '</b>';
+    else if (op==='dot') out = '<b>A·B = ' + formatPlain(vecDot(A,B)) + '</b>';
+    else if (op==='cross') out = '<b>' + vecToHtml(vecCross(A,B)) + '</b>';
+    else if (op==='mag') out = '<b>|A| = ' + formatPlain(vecMag(A)) + '</b>';
+    document.getElementById('toolResult').innerHTML = out;
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>';
+  }
+}
+
+function openTableModal(){
+  const html = ''
+    + '<div class="modal-note">جدول قيم f(x) — اكتب الدالة بمتغير x، مثال: x^2 أو sin(x)</div>'
+    + '<div class="tool-field"><label>f(x) =</label><input type="text" id="tblExpr" placeholder="x^2"></div>'
+    + '<div class="tool-row">'
+    + '<div class="tool-field"><label>من</label><input type="text" id="tblStart" placeholder="0"></div>'
+    + '<div class="tool-field"><label>إلى</label><input type="text" id="tblEnd" placeholder="5"></div>'
+    + '<div class="tool-field"><label>خطوة</label><input type="text" id="tblStep" placeholder="1"></div>'
+    + '</div>'
+    + '<button class="tool-compute" onclick="computeTable()">إنشاء الجدول</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('TABLE — جدول القيم', html);
+}
+function computeTable(){
+  try{
+    const expr = document.getElementById('tblExpr').value;
+    const start = parseFloat(document.getElementById('tblStart').value);
+    const end = parseFloat(document.getElementById('tblEnd').value);
+    const step = parseFloat(document.getElementById('tblStep').value);
+    if (!expr.trim() || isNaN(start) || isNaN(end) || isNaN(step) || step===0) throw new Error('bad');
+    const rows = buildTable(expr, start, end, step);
+    let html = '<div style="max-height:220px;overflow-y:auto;">'
+      + '<div style="display:flex;justify-content:space-between;padding:4px 8px;opacity:.6;font-size:10px;"><span>x</span><span>f(x)</span></div>';
+    rows.forEach(([x,y]) => {
+      html += '<div style="display:flex;justify-content:space-between;padding:5px 8px;border-top:1px solid #2c3446;font-size:11.5px;"><span>' + formatPlain(x) + '</span><span>' + (isFinite(y) ? formatPlain(y) : 'ERROR') + '</span></div>';
+    });
+    html += '</div>';
+    document.getElementById('toolResult').innerHTML = html;
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>';
+  }
+}
+
+function openDerivativeModal(){
+  const html = ''
+    + '<div class="modal-note">مشتقة f(x) عند نقطة معيّنة</div>'
+    + '<div class="tool-field"><label>f(x) =</label><input type="text" id="derExpr" placeholder="x^3"></div>'
+    + '<div class="tool-field"><label>عند x =</label><input type="text" id="derX" placeholder="2"></div>'
+    + '<button class="tool-compute" onclick="computeDerivative()">احسب d/dx</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('d/dx — المشتقة', html);
+}
+function computeDerivative(){
+  try{
+    const expr = document.getElementById('derExpr').value;
+    const x0 = parseFloat(document.getElementById('derX').value);
+    if (!expr.trim() || isNaN(x0)) throw new Error('bad');
+    const val = numericDerivative(expr, x0);
+    document.getElementById('toolResult').innerHTML = '<b>d/dx = ' + formatPlain(val) + '</b>';
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>';
+  }
+}
+
+function openIntegralModal(){
+  const html = ''
+    + '<div class="modal-note">التكامل المحدد لـ f(x) بين a وb</div>'
+    + '<div class="tool-field"><label>f(x) =</label><input type="text" id="intExpr" placeholder="x^2"></div>'
+    + '<div class="tool-row">'
+    + '<div class="tool-field"><label>من (a)</label><input type="text" id="intA" placeholder="0"></div>'
+    + '<div class="tool-field"><label>إلى (b)</label><input type="text" id="intB" placeholder="1"></div>'
+    + '</div>'
+    + '<button class="tool-compute" onclick="computeIntegral()">احسب ∫</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('∫dx — التكامل المحدد', html);
+}
+function computeIntegral(){
+  try{
+    const expr = document.getElementById('intExpr').value;
+    const a = parseFloat(document.getElementById('intA').value);
+    const b = parseFloat(document.getElementById('intB').value);
+    if (!expr.trim() || isNaN(a) || isNaN(b)) throw new Error('bad');
+    const val = numericIntegral(expr, a, b);
+    document.getElementById('toolResult').innerHTML = '<b>∫ = ' + formatPlain(val) + '</b>';
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>';
+  }
+}
+
+function openSolveModal(){
+  const html = ''
+    + '<div class="modal-note">حل f(x) = 0 بالبدء من تخمين أولي</div>'
+    + '<div class="tool-field"><label>f(x) =</label><input type="text" id="solveExpr" placeholder="x^2-4"></div>'
+    + '<div class="tool-field"><label>تخمين أولي</label><input type="text" id="solveGuess" placeholder="1"></div>'
+    + '<button class="tool-compute" onclick="computeSolve()">SOLVE</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('SOLVE — إيجاد الجذر', html);
+}
+function computeSolve(){
+  try{
+    const expr = document.getElementById('solveExpr').value;
+    const guess = parseFloat(document.getElementById('solveGuess').value);
+    if (!expr.trim() || isNaN(guess)) throw new Error('bad');
+    const root = numericSolve(expr, guess);
+    document.getElementById('toolResult').innerHTML = '<b>x = ' + formatPlain(root) + '</b>';
+  } catch(e){
+    document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">لم يتم إيجاد جذر — جرّب تخمينًا مختلفًا</span>';
+  }
+}
+
+function openEqnModal(kind){
+  kind = kind || 'lin2';
+  let html = '<div class="tool-row" style="margin-bottom:8px;flex-wrap:wrap;">'
+    + '<button class="tool-compute" onclick="openEqnModal(\'lin2\')">خطي (متغيرين)</button>'
+    + '<button class="tool-compute" onclick="openEqnModal(\'lin3\')">خطي (٣ متغيرات)</button>'
+    + '<button class="tool-compute" onclick="openEqnModal(\'quad\')">تربيعية</button>'
+    + '</div>';
+  if (kind === 'lin2'){
+    html += '<div class="modal-note">a1x + b1y = c1 &nbsp;،&nbsp; a2x + b2y = c2</div>'
+      + '<div class="tool-row">' + ['a1','b1','c1'].map(id => '<input type="text" class="mat-cell" id="' + id + '" placeholder="' + id + '">').join('') + '</div>'
+      + '<div class="tool-row" style="margin-top:4px;">' + ['a2','b2','c2'].map(id => '<input type="text" class="mat-cell" id="' + id + '" placeholder="' + id + '">').join('') + '</div>'
+      + '<button class="tool-compute" style="margin-top:8px;" onclick="computeEqnLin2()">حل</button>';
+  } else if (kind === 'lin3'){
+    html += '<div class="modal-note">a1x + b1y + c1z = d1 ...</div>';
+    ['1','2','3'].forEach(r => {
+      html += '<div class="tool-row" style="margin-top:4px;">' + ['a','b','c','d'].map(l => '<input type="text" class="mat-cell" id="' + l + r + '" placeholder="' + l + r + '">').join('') + '</div>';
+    });
+    html += '<button class="tool-compute" style="margin-top:8px;" onclick="computeEqnLin3()">حل</button>';
+  } else if (kind === 'quad'){
+    html += '<div class="modal-note">ax² + bx + c = 0</div>'
+      + '<div class="tool-row">' + ['a','b','c'].map(id => '<input type="text" class="mat-cell" id="q' + id + '" placeholder="' + id + '">').join('') + '</div>'
+      + '<button class="tool-compute" style="margin-top:8px;" onclick="computeEqnQuad()">حل</button>';
+  }
+  html += '<div id="toolResult" class="tool-result"></div>';
+  openModal('EQN — حل المعادلات', html);
+}
+function gv(id){ const el = document.getElementById(id); const v = el ? parseFloat(el.value) : NaN; return isNaN(v) ? 0 : v; }
+function computeEqnLin2(){
+  try{
+    const [x,y] = solveLinear2(gv('a1'),gv('b1'),gv('c1'),gv('a2'),gv('b2'),gv('c2'));
+    document.getElementById('toolResult').innerHTML = '<b>x = ' + formatPlain(x) + '<br>y = ' + formatPlain(y) + '</b>';
+  } catch(e){ document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR (لا يوجد حل وحيد)</span>'; }
+}
+function computeEqnLin3(){
+  try{
+    const M = [[gv('a1'),gv('b1'),gv('c1')],[gv('a2'),gv('b2'),gv('c2')],[gv('a3'),gv('b3'),gv('c3')]];
+    const C = [gv('d1'),gv('d2'),gv('d3')];
+    const [x,y,z] = solveLinear3(M,C);
+    document.getElementById('toolResult').innerHTML = '<b>x = ' + formatPlain(x) + '<br>y = ' + formatPlain(y) + '<br>z = ' + formatPlain(z) + '</b>';
+  } catch(e){ document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR (لا يوجد حل وحيد)</span>'; }
+}
+function computeEqnQuad(){
+  try{
+    const a = gv('qa'), b = gv('qb'), c = gv('qc');
+    if (a === 0) throw new Error('a=0');
+    const roots = solveQuadratic(a,b,c);
+    const strs = roots.map(r => typeof r === 'number' ? formatPlain(r) : r.toString());
+    document.getElementById('toolResult').innerHTML = '<b>x₁ = ' + strs[0] + '<br>x₂ = ' + strs[1] + '</b>';
+  } catch(e){ document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>'; }
+}
+
+function openRatioModal(){
+  const html = ''
+    + '<div class="modal-note">أدخل النسبة (a:b أو a:b:c)</div>'
+    + '<div class="tool-row">' + ['ra','rb'].map(id => '<input type="text" class="mat-cell" id="' + id + '" placeholder="' + id.slice(1).toUpperCase() + '">').join('') + '<input type="text" class="mat-cell" id="rc" placeholder="C (اختياري)"></div>'
+    + '<button class="tool-compute" onclick="computeRatio()">تبسيط</button>'
+    + '<div id="toolResult" class="tool-result"></div>';
+  openModal('RATIO — تبسيط النسب', html);
+}
+function computeRatio(){
+  try{
+    const a = gv('ra'), b = gv('rb');
+    const cRaw = document.getElementById('rc').value;
+    const parts = cRaw.trim() === '' ? [a,b] : [a,b,gv('rc')];
+    const simplified = simplifyRatio(parts);
+    document.getElementById('toolResult').innerHTML = '<b>' + simplified.join(' : ') + '</b>';
+  } catch(e){ document.getElementById('toolResult').innerHTML = '<span style="color:#f87171;">Math ERROR</span>'; }
+}
+
+function toFraction(x, maxDen){
+  maxDen = maxDen || 100000;
+  if (x === 0) return [0,1];
+  const sign = x < 0 ? -1 : 1; x = Math.abs(x);
+  let h1=1,h2=0,k1=0,k2=1,b=x,guard=0;
+  do {
+    const a = Math.floor(b);
+    let aux=h1; h1=a*h1+h2; h2=aux;
+    aux=k1; k1=a*k1+k2; k2=aux;
+    if (Math.abs(b-a) < 1e-9) break;
+    b = 1/(b-a); guard++;
+  } while (Math.abs(x - h1/k1) > x*1e-9 && k1 < maxDen && guard < 30);
+  return [sign*h1, k1];
+}
+
+/* ---------- rendering ---------- */
+function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function applyImplicitMult(v){
+  v = v.replace(/([0-9)π])×(?=[xyzABCDEFM])/g, '$1');
+  v = v.replace(/([xyzABCDEFM])×(?=[0-9(πxyzABCDEFM])/g, '$1');
+  return v;
+}
+function dispText(s){ return escapeHtml(applyImplicitMult(s || '')); }
+
+function renderTokens(list){
+  let html = '';
+  for (const tok of list){
+    if (tok.t === 'txt'){
+      html += '<span class="txt">' + dispText(tok.v) + '</span>';
+    } else if (tok.t === 'sup'){
+      const on = (active === tok && activeField === 'v');
+      html += '<sup class="exp' + (on?' field-active':'') + '">' + dispText(tok.v) + (on?'<span class="cursor"></span>':'') + '</sup>';
+    } else if (tok.t === 'frac'){
+      const numOn = active === tok && activeField === 'num';
+      const denOn = active === tok && activeField === 'den';
+      html += '<span class="frac">'
+            + '<span class="fnum' + (numOn?' field-active':'') + '">' + dispText(tok.num) + (numOn?'<span class="cursor"></span>':'') + '</span>'
+            + '<span class="fbar"></span>'
+            + '<span class="fden' + (denOn?' field-active':'') + '">' + dispText(tok.den) + (denOn?'<span class="cursor"></span>':'') + '</span>'
+            + '</span>';
+    } else if (tok.t === 'sqrt'){
+      const on = active === tok && activeField === 'content';
+      html += '<span class="sqrt"><span class="radical">√</span><span class="sqrt-content' + (on?' field-active':'') + '">' + dispText(tok.content) + (on?'<span class="cursor"></span>':'') + '</span></span>';
+    }
+  }
+  if (active === null) html += '<span class="cursor"></span>';
+  if (html === '') html = '<span class="cursor"></span>';
+  return html;
+}
+
+function fracHtml(n, d){
+  return '<span class="frac"><span class="fnum">' + n + '</span><span class="fbar"></span><span class="fden">' + d + '</span></span>';
+}
+
+function formatNumber(x){
+  const abs = Math.abs(x);
+  if (x !== 0 && (abs >= 1e10 || abs < 1e-9)){
+    let exp = x.toExponential(9);
+    let parts = exp.split('e');
+    let mant = parseFloat(parts[0]).toString();
+    let expNum = parseInt(parts[1], 10);
+    mant = mant.replace('-', '−');
+    return mant + '<span class="result-e10">×10<sup>' + expNum + '</sup></span>';
+  }
+  let r = Math.round(x * 1e10) / 1e10;
+  let s = r.toString();
+  s = s.replace('-', '−');
+  return s;
+}
+
+function renderResult(){
+  const el = document.getElementById('resultEl');
+  const pill = document.getElementById('formatPill');
+  if (currentMode === 'BASE'){
+    if (!hasResult){ el.innerHTML = ''; pill.style.visibility = 'hidden'; }
+    if (errorMessage){ el.classList.add('error'); el.textContent = errorMessage; }
+    return;
+  }
+  el.classList.remove('error');
+  if (errorMessage){
+    el.classList.add('error');
+    el.textContent = errorMessage;
+    pill.style.visibility = 'hidden';
+    return;
+  }
+  if (specialResultText){
+    el.innerHTML = specialResultText;
+    pill.style.visibility = 'hidden';
+    return;
+  }
+  if (lastResultValue === null){
+    el.innerHTML = '';
+    pill.style.visibility = 'hidden';
+    return;
+  }
+  const v = lastResultValue;
+  const isIntish = Math.abs(v - Math.round(v)) < 1e-9;
+  if (preferFraction && !isIntish && Math.abs(v) < 1e7){
+    const [n, d] = toFraction(v);
+    if (Math.abs(d) > 1 && Math.abs(d) < 100000){
+      el.innerHTML = (n < 0 ? '−' : '') + fracHtml(Math.abs(n), d);
+      pill.style.visibility = 'visible';
+      document.getElementById('formatPillText').textContent = 'S⇔D [Frac]';
+      return;
+    }
+  }
+  el.innerHTML = formatNumber(v);
+  pill.style.visibility = 'visible';
+  document.getElementById('formatPillText').textContent = 'S⇔D [Dec]';
+}
+
+function render(){
+  document.getElementById('exprInner').innerHTML = renderTokens(tokens);
+  const scroller = document.getElementById('exprScroll');
+  scroller.scrollLeft = scroller.scrollWidth;
+  renderResult();
+  document.getElementById('badgeAngle').textContent = angleMode;
+  document.getElementById('badgeFormat').textContent = preferFraction ? 'Frac' : 'Dec';
+}
+
+/* ---------- key handlers ---------- */
+function toggleAngle(){ angleMode = angleMode === 'D' ? 'R' : 'D'; render(); toast(angleMode === 'D' ? 'وضع الدرجات (Degree)' : 'وضع الراديان (Radian)'); }
+function toggleFormat(){ preferFraction = !preferFraction; render(); }
+
+function handleFracKey(){ const {shift} = consumeModifiers(); if (shift) toast('كسر مختلط غير متاح في هذه النسخة'); else openFraction(); }
+function handleSqrtKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('cbrt('); else openSqrt(); }
+function handleSquareKey(){ const {shift} = consumeModifiers(); closedSup(shift ? '3' : '2'); }
+function handlePowKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('nroot('); else openPow(); }
+function handleLogKey(){ const {shift} = consumeModifiers(); if (shift) toast('∑ غير متاح في هذه النسخة'); else appendToActive('log('); }
+function handleLnKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendToActive('e'); else if (shift) appendToActive('exp('); else appendToActive('ln('); }
+
+function handleNegKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendAlpha('A'); else if (shift) appendToActive('!'); else appendToActive('-'); }
+function handleDegKey(){ const {alpha} = consumeModifiers(); if (alpha) appendAlpha('B'); else appendToActive('°'); }
+function handleInvKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendAlpha('C'); else if (shift) appendToActive('!'); else closedSup('-1'); }
+function handleTrigKey(name){
+  const {shift, alpha} = consumeModifiers();
+  const map = {sin:'D', cos:'E', tan:'F'};
+  if (alpha) appendAlpha(map[name]);
+  else if (shift) appendToActive('a' + name + '(');
+  else appendToActive(name + '(');
+}
+
+function handleStoKey(){
+  const {shift, alpha} = consumeModifiers();
+  if (alpha){ appendAlpha('x'); return; }
+  if (shift){ openVarsModal(); return; }
+  stoArmed = true;
+  toast('اختر متغيرًا لتخزين القيمة فيه: x, y, A إلى F, M');
+}
+function handleEngKey(){ const {alpha} = consumeModifiers(); if (alpha) appendAlpha('y'); else toast('ENG غير متاح في هذه النسخة'); }
+function handleOpenParenKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendAlpha('z'); else if (shift) appendToActive('%'); else appendToActive('('); }
+function handleCloseParenKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendAlpha('i'); else if (shift) appendToActive(','); else appendToActive(')'); }
+function handleMPlusKey(){
+  const {shift, alpha} = consumeModifiers();
+  if (alpha){ appendAlpha('M'); return; }
+  evaluateExpression();
+  if (lastResultValue !== null && !errorMessage){ vars.M += shift ? -lastResultValue : lastResultValue; toast('M = ' + formatPlain(vars.M)); }
+}
+function formatPlain(v){ let r = Math.round(v*1e8)/1e8; return r.toString(); }
+function openVarsModal(){
+  const order = ['X','Y','A','B','C','D','E','F','M','Z'];
+  const html = order.map(k =>
+    '<div class="modal-list-item" onclick="insertVarSymbol(\'' + k + '\')"><span class="name">' + k + '</span><span class="val">' + formatPlain(vars[k]) + '</span></div>'
+  ).join('')
+  + '<div class="modal-note">دوس على أي متغير لإدراجه في الحساب. لتخزين قيمة جديدة: دوس STO ثم اختر المتغير.</div>'
+  + '<div class="modal-list-item" onclick="clearAllVars()"><span class="name" style="color:#f87171;">مسح كل المتغيرات</span></div>';
+  openModal('المتغيرات (VARS)', html);
+}
+function insertVarSymbol(k){
+  const letter = k === 'X' ? 'x' : (k === 'Y' ? 'y' : (k === 'Z' ? 'z' : k));
+  appendVariable(letter);
+  closeModal();
+}
+function clearAllVars(){
+  vars = { A:0, B:0, C:0, D:0, E:0, F:0, X:0, Y:0, M:0, Z:0 };
+  toast('تم مسح كل المتغيرات');
+  closeModal();
+}
+
+function handleDigitShift(digit, modeLabel){
+  const {shift} = consumeModifiers();
+  if (shift){
+    if (modeLabel === 'CONST') return openConstModal();
+    if (modeLabel === 'CONV') return openConvModal();
+    if (modeLabel === 'RESET') return resetAll();
+    if (modeLabel === 'STAT') return setMode('STAT');
+    if (modeLabel === 'BASE-N') return setMode('BASE');
+    toast('وضع ' + modeLabel + ' يحتاج محرك حسابي مختلف وغير متاح في هذه النسخة');
+  }
+  else appendToActive(digit);
+}
+function handleTimesKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('npr('); else appendToActive('×'); }
+function handleDivKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('ncr('); else appendToActive('÷'); }
+function handlePlusKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('pol('); else appendToActive('+'); }
+function handleMinusKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('rec('); else appendToActive('−'); }
+function handleZeroKey(){ const {shift} = consumeModifiers(); if (shift) appendToActive('rnd('); else appendToActive('0'); }
+function handleDotKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendToActive('ranInt('); else if (shift) appendToActive('ran()'); else appendToActive('.'); }
+function handleE10Key(){
+  const {shift, alpha} = consumeModifiers();
+  if (alpha){ appendToActive('e'); return; }
+  if (shift){ appendToActive('π'); return; }
+  openPow('×10');
+}
+function handleAnsKey(){ const {shift, alpha} = consumeModifiers(); if (alpha) appendToActive('PreAns'); else if (shift) appendToActive('%'); else appendToActive('Ans'); }
+function handleEqualsKey(){ evaluateExpression(); }
+
+function handleOptn(){
+  const {shift} = consumeModifiers();
+  if (shift){ toast('QR غير متاح في هذه النسخة'); return; }
+  const html = OPTN_ITEMS.map((it,i) =>
+    '<div class="modal-list-item" onclick="insertOptn(' + i + ')"><span class="name">' + it.name + '</span></div>'
+  ).join('');
+  openModal('OPTN — دوال إضافية', html);
+}
+function insertOptn(i){ appendToActive(OPTN_ITEMS[i].ins); closeModal(); }
+function handleCalc(){
+  const {shift, alpha} = consumeModifiers();
+  if (alpha){ appendToActive('='); return; }
+  if (shift){ openSolveModal(); return; }
+  evaluateExpression();
+}
+function handleMenu(){
+  const {shift} = consumeModifiers();
+  if (shift) openSetupModal();
+  else openMenuModal();
+}
+function handleIntegral(){
+  const {shift, alpha} = consumeModifiers();
+  if (alpha){ appendToActive(':'); return; }
+  if (shift){ openDerivativeModal(); return; }
+  openIntegralModal();
+}
+function handleXVar(){ appendVariable('x'); }
+
+/* ---------- physical keyboard support ---------- */
+document.addEventListener('keydown', (e) => {
+  if (/^[0-9]$/.test(e.key)) appendToActive(e.key);
+  else if (e.key === '.') appendToActive('.');
+  else if (e.key === '+') appendToActive('+');
+  else if (e.key === '-') appendToActive('−');
+  else if (e.key === '*') appendToActive('×');
+  else if (e.key === '/') { e.preventDefault(); appendToActive('÷'); }
+  else if (e.key === '(') appendToActive('(');
+  else if (e.key === ')') appendToActive(')');
+  else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); evaluateExpression(); }
+  else if (e.key === 'Backspace') del();
+  else if (e.key === 'Escape') clearAll();
+  else if (e.key === 'ArrowRight') exitField();
+  else if (e.key === 'ArrowLeft') dpadLeft();
+});
+
+render();
+updateModifierUI();
+</script>
+</body>
+</html>
